@@ -29,6 +29,16 @@ public class TestUdfController {
     public ServiceResponse<CompileTestResponse> compile(@RequestBody CompileInput compileInput) {
         try {
 
+            Tuple2<String,Boolean> codeCompile = compileService.compile(compileInput.getPackagename(), compileInput.getCode());
+            if(!codeCompile._2){
+                return new ServiceResponse<>(HttpStatus.BAD_REQUEST, ErrorCodes.COMPILATION_FAILED.getCode(), "Code Compilation Failed\n"+codeCompile._1);
+            }
+
+            Tuple2<String,Boolean> testCompile = compileService.compile(compileInput.getUtPackagename(), compileInput.getUtCode());
+            if(!testCompile._2){
+                return new ServiceResponse<>(HttpStatus.BAD_REQUEST, ErrorCodes.COMPILATION_FAILED.getCode(), "Testing Code Compilation Failed\n"+testCompile._1 );
+            }
+
             CompileTestResponse compileTestResponse = compileTestService.executeTest(compileInput);
             if(compileTestResponse.isSuccessful())
                 return new ServiceResponse(compileTestResponse, HttpStatus.OK);
