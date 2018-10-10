@@ -21,7 +21,7 @@ public class CompileController {
     @Autowired
     CompileService compileService;
 
-    @RequestMapping(value = "/compileOnly", method = RequestMethod.POST)
+    @RequestMapping(value = "/compile", method = RequestMethod.POST)
     public ServiceResponse<String> compile(@RequestBody CompileInput compileInput) {
         Tuple2<String,Boolean> response = null;
         try {
