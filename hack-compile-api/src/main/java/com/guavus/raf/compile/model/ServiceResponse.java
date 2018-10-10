@@ -12,10 +12,11 @@ public class ServiceResponse<T> {
         this.status = status.toString();
     }
 
-    public ServiceResponse(String error, String status) {
+    public ServiceResponse(HttpStatus status, String error) {
         this.error = error;
-        this.status = status;
+        this.status = status.toString();
     }
+
     public T getResponse() {
         return response;
     }
