@@ -1,6 +1,6 @@
 package com.guavus.raf.compile.model;
 
-public class CompileTestInput {
+/*public class CompileTestInput {
 
     CompileInput code;
     CompileInput junit;
@@ -21,4 +21,4 @@ public class CompileTestInput {
     public void setJunit(CompileInput junit) {
         this.junit = junit;
     }
-}
+}*/

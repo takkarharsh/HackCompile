@@ -1,33 +1,34 @@
 package com.guavus.raf.compile.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class CompileTestResponse implements Serializable {
 
-    private String testName;
-    private String status;
+    private List<TestStatus> testStatusList;
+    private boolean successful;
 
-    public CompileTestResponse(String testName, String status) {
-        this.testName = testName;
-        this.status = status;
+    public CompileTestResponse(List<TestStatus> testStatusList, boolean successful) {
+        this.testStatusList = testStatusList;
+        this.successful = successful;
     }
 
     public CompileTestResponse() {
     }
 
-    public String getTestName() {
-        return testName;
+    public List<TestStatus> getTestStatusList() {
+        return testStatusList;
     }
 
-    public void setTestName(String testName) {
-        this.testName = testName;
+    public void setTestStatusList(List<TestStatus> testStatusList) {
+        this.testStatusList = testStatusList;
     }
 
-    public String getStatus() {
-        return status;
+    public boolean isSuccessful() {
+        return successful;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setSuccessful(boolean successful) {
+        this.successful = successful;
     }
 }

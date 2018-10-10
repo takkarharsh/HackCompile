@@ -2,9 +2,12 @@ package com.guavus.raf.compile.controller;
 
 import com.guavus.raf.compile.model.CompileInput;
 import com.guavus.raf.compile.model.ServiceResponse;
+import com.guavus.raf.compile.service.CompileService;
 import com.guavus.raf.compile.utils.Compile;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import scala.Tuple2;
 
 import java.util.Objects;
 import java.util.regex.Matcher;
@@ -15,6 +18,10 @@ import java.util.regex.Pattern;
 @CrossOrigin
 public class CompileController {
 
+    @Autowired
+    CompileService compileService;
+
+
     @RequestMapping(value = "/dummy", method = RequestMethod.GET)
     public String getDummyValue() {
         return new String("Dummy Response");
@@ -22,22 +29,26 @@ public class CompileController {
 
     @RequestMapping(value = "/compile", method = RequestMethod.POST)
     public ServiceResponse<String> compile(@RequestBody CompileInput compileInput) {
-        String out = null;
+        Tuple2<String,Boolean> response = null;
         try {
-            out = Compile.compile(compileInput.getPackagename(), compileInput.getCode());
+            response = compileService.compile(compileInput.getPackagename(), compileInput.getCode());
+            if(!response._2){
+                return new ServiceResponse<>(response._1, HttpStatus.BAD_REQUEST);
+            }
+            /*out = Compile.compile(compileInput.getPackagename(), compileInput.getCode());
             System.out.print(out);
             Pattern pattern = Pattern.compile("\\s\\d+.?(error)s*");
             Matcher matcher = pattern.matcher(out);
             if (matcher.find()) {
-                return new ServiceResponse<String>(out, HttpStatus.INTERNAL_SERVER_ERROR);
-            }
+                return new ServiceResponse<String>(out, HttpStatus.BAD_REQUEST);
+            }*/
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (Objects.nonNull(out)) {
-            return new ServiceResponse<String>(out + "\n COMPILATION SUCCESSFUL", HttpStatus.OK);
+        if (Objects.nonNull(response._2)) {
+            return new ServiceResponse<>(response._1 + "\n COMPILATION SUCCESSFUL", HttpStatus.OK);
         } else {
-            return new ServiceResponse<String>("COMPILATION SUCCESSFUL", HttpStatus.OK);
+            return new ServiceResponse<>("COMPILATION SUCCESSFUL", HttpStatus.OK);
         }
     }
 //    @RequestMapping(value = "/test", method = RequestMethod.POST, consumes = TEXT_PLAIN_VALUE, produces = "application/json")

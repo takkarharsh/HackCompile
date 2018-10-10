@@ -1,5 +1,7 @@
 package com.guavus.raf.compile.runtest;
 
+
+
 import com.google.common.collect.ImmutableList;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
@@ -9,12 +11,9 @@ import org.apache.spark.sql.types.StructField;
 import org.apache.spark.sql.types.StructType;
 import scala.Tuple2;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
-public class MyTest extends UDFComputeTest {
+public class SampleTest extends UDFComputeTest {
 
 
     /* ==============================================================================================
@@ -23,8 +22,8 @@ public class MyTest extends UDFComputeTest {
      */
 
     @Override
-    public Set<String> testSet() {
-        Set<String> testNameSet = new HashSet<>();
+    public LinkedHashSet<String> testSet() {
+        LinkedHashSet<String> testNameSet = new LinkedHashSet<>();
         testNameSet.add("test1");
         return testNameSet;
     }
@@ -58,9 +57,9 @@ public class MyTest extends UDFComputeTest {
         sparkSession.createDataFrame()*/
     }
 
-    public String verifytest1(Dataset<Row> dataset, HashMap<String, String> inputMap) {
-        return null;
 
+    public boolean verifytest1(Dataset<Row> dataset, HashMap<String,String> inputMap){
+        return true;
     }
 
 

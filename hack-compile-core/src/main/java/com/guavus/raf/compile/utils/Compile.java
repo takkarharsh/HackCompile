@@ -1,6 +1,8 @@
 package com.guavus.raf.compile.utils;
 
 import org.joor.ReflectException;
+import scala.Tuple2;
+import shapeless.Tuple;
 
 import javax.tools.*;
 import java.io.ByteArrayOutputStream;
@@ -15,7 +17,7 @@ import java.util.List;
 
 public class Compile {
 
-    public static String compile(String className, String content) {
+    public static Tuple2<String,Boolean> compile(String className, String content) {
         MethodHandles.Lookup lookup = MethodHandles.lookup();
 //        lookup.lookupClass().getClassLoader().loadClass()
 
@@ -32,7 +34,7 @@ public class Compile {
 //            CLASSPATH = CLASSPATH+":/Users/harsh.takkar/gitRepo/charter_hunt/augmentedCompile/target/lib/*.jar";
 
             System.out.println(System.getProperty("loader.path"));
-            compiler.getTask(output, fileManager, null, Arrays.asList("-g", "-proc:none", "-classpath", System.getProperty("loader.path")), null, files).call();
+            boolean status = compiler.getTask(output, fileManager, null, Arrays.asList("-g", "-proc:none", "-classpath", System.getProperty("loader.path")), null, files).call();
 //            for (Diagnostic diagnostic : diagnostics.getDiagnostics()) {
 //                System.out.println(diagnostic.getCode());
 //                System.out.println(diagnostic.getKind());
@@ -43,7 +45,7 @@ public class Compile {
 //                System.out.println(diagnostic.getMessage(null));
 //
 //            }
-            return output.toString();
+            return new Tuple2<>(output.toString(), status);
         } catch (Exception e) {
             throw new ReflectException("Error while compiling " + className, e);
         }

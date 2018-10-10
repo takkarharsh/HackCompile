@@ -5,6 +5,9 @@ import java.io.Serializable;
 public class CompileInput implements Serializable {
     private String packagename;
     private String code;
+    private String utCode;
+    private String utPackagename;
+
 
     public CompileInput() {
     }
@@ -23,5 +26,21 @@ public class CompileInput implements Serializable {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getUtCode() {
+        return utCode;
+    }
+
+    public void setUtCode(String utCode) {
+        this.utCode = utCode;
+    }
+
+    public String getUtPackagename() {
+        return utPackagename;
+    }
+
+    public void setUtPackagename(String utPackagename) {
+        this.utPackagename = utPackagename;
     }
 }

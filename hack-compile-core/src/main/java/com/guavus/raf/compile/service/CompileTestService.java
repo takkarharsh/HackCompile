@@ -1,7 +1,6 @@
 package com.guavus.raf.compile.service;
 
 import com.guavus.raf.compile.model.CompileInput;
-import com.guavus.raf.compile.model.CompileTestInput;
 import com.guavus.raf.compile.model.CompileTestResponse;
 import com.guavus.raf.compile.runtest.UDFComputeTest;
 import com.guavus.raf.functions.udf.UDFCompute;
@@ -17,11 +16,11 @@ public class CompileTestService {
     @Autowired
     CustomTestRunner customTestRunner;
 
-    public List<CompileTestResponse> executeTest(CompileTestInput compileTestInput) {
-        UDFCompute udfCompute = getUdfCompute(compileTestInput.getCode());
-        UDFComputeTest udfComputeTest = getUdfComputeTest(compileTestInput.getJunit());
-        List<CompileTestResponse> compileTestResponses = customTestRunner.invokeTest(udfCompute, udfComputeTest);
-        return compileTestResponses;
+    public CompileTestResponse executeTest(CompileInput compileInput) {
+        UDFCompute udfCompute = getUdfCompute(compileInput);
+        UDFComputeTest udfComputeTest = getUdfComputeTest(compileInput);
+        CompileTestResponse compileTestResponse = customTestRunner.invokeTest(udfCompute, udfComputeTest);
+        return compileTestResponse;
     }
 
     private UDFCompute getUdfCompute(CompileInput compileInput) {
@@ -32,8 +31,8 @@ public class CompileTestService {
     }
 
     private UDFComputeTest getUdfComputeTest(CompileInput compileInput) {
-        String udfCode = compileInput.getCode();
-        String codePackageName = compileInput.getPackagename();
+        String udfCode = compileInput.getUtCode();
+        String codePackageName = compileInput.getUtPackagename();
         UDFComputeTest udfComputeTest = Reflect.compile(codePackageName, udfCode).create().get();
         return udfComputeTest;
     }
