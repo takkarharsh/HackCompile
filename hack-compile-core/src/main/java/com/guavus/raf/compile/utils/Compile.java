@@ -1,8 +1,7 @@
 package com.guavus.raf.compile.utils;
 
-import org.joor.ReflectException;
+import com.guavus.raf.compile.exception.ReflectException;
 import scala.Tuple2;
-import shapeless.Tuple;
 
 import javax.tools.*;
 import java.io.ByteArrayOutputStream;
@@ -17,7 +16,37 @@ import java.util.List;
 
 public class Compile {
 
-    public static Tuple2<String,Boolean> compile(String className, String content) {
+    static Class<?> compile(String className, String content) {
+        MethodHandles.Lookup lookup = MethodHandles.lookup();
+
+        try {
+            return lookup.lookupClass().getClassLoader().loadClass(className);
+        } catch (ClassNotFoundException ignore) {
+            JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
+
+            try {
+                Compile.ClassFileManager fileManager = new Compile.ClassFileManager(compiler.getStandardFileManager(null, null, null));
+
+                List<Compile.CharSequenceJavaFileObject> files = new ArrayList<Compile.CharSequenceJavaFileObject>();
+                files.add(new Compile.CharSequenceJavaFileObject(className, content));
+
+                compiler.getTask(null, fileManager, null, Arrays.asList("-g", "-proc:none", "-classpath", System.getProperty("loader.path")), null, files).call();
+                Class<?> result = null;
+
+                // This works if we have private-access to the interfaces in the class hierarchy
+                if (Reflect.CACHED_LOOKUP_CONSTRUCTOR != null) {
+                    ClassLoader cl = lookup.lookupClass().getClassLoader();
+                    byte[] b = fileManager.o.getBytes();
+                    result = Reflect.on(cl).call("defineClass", className, b, 0, b.length).get();
+                }
+                return result;
+            } catch (Exception e) {
+                throw new ReflectException("Error while compiling " + className, e);
+            }
+        }
+    }
+
+    public static Tuple2<String, Boolean> compileOnly(String className, String content) {
         MethodHandles.Lookup lookup = MethodHandles.lookup();
 //        lookup.lookupClass().getClassLoader().loadClass()
 

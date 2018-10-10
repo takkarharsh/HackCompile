@@ -21,7 +21,7 @@ public class CompileController {
     @Autowired
     CompileService compileService;
 
-    @RequestMapping(value = "/compile", method = RequestMethod.POST)
+    @RequestMapping(value = "/compileOnly", method = RequestMethod.POST)
     public ServiceResponse<String> compile(@RequestBody CompileInput compileInput) {
         Tuple2<String,Boolean> response = null;
         try {
@@ -29,9 +29,9 @@ public class CompileController {
             if(!response._2){
                 return new ServiceResponse<>(response._1, HttpStatus.BAD_REQUEST);
             }
-            /*out = Compile.compile(compileInput.getPackagename(), compileInput.getCode());
+            /*out = Compile.compileOnly(compileInput.getPackagename(), compileInput.getCode());
             System.out.print(out);
-            Pattern pattern = Pattern.compile("\\s\\d+.?(error)s*");
+            Pattern pattern = Pattern.compileOnly("\\s\\d+.?(error)s*");
             Matcher matcher = pattern.matcher(out);
             if (matcher.find()) {
                 return new ServiceResponse<String>(out, HttpStatus.BAD_REQUEST);

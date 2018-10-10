@@ -20,7 +20,7 @@ public class UdfTemplateController {
 
     @RequestMapping(value = "/initUdfTest")
     public ServiceResponse<String> getStaticTestCodeTemplate() {
-        String response = "package com.guavus.raf.compile.runtest;\n\nimport java.util.*;\n\npublic class UDFComputeTestImpl extends UDFComputeTest {\n    /* ==============================================================================================\n                        Use \"sparkSession\" variable for spark-related operations.\n       ==============================================================================================\n     */\n    @Override\n    public LinkedHashSet<String> testSet() {\n         return null;\n    }\n}\n";
+        String response = "package com.guavus.raf.compileOnly.runtest;\n\nimport java.util.*;\n\npublic class UDFComputeTestImpl extends UDFComputeTest {\n    /* ==============================================================================================\n                        Use \"sparkSession\" variable for spark-related operations.\n       ==============================================================================================\n     */\n    @Override\n    public LinkedHashSet<String> testSet() {\n         return null;\n    }\n}\n";
         return new ServiceResponse<String>(response, HttpStatus.OK);
     }
 }

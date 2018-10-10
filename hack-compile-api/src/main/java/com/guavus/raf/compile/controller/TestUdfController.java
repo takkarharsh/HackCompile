@@ -34,8 +34,8 @@ public class TestUdfController {
                 return new ServiceResponse(compileTestResponse, HttpStatus.OK);
 
             return new ServiceResponse(compileTestResponse, HttpStatus.BAD_REQUEST);
-           /* Tuple2<String,Boolean> codeCompile = compileService.compile(compileInput.getPackagename(), compileInput.getCode());
-            Tuple2<String,Boolean> testCompile = compileService.compile(compileInput.getUtPackagename(), compileInput.getUtCode());
+           /* Tuple2<String,Boolean> codeCompile = compileService.compileOnly(compileInput.getPackagename(), compileInput.getCode());
+            Tuple2<String,Boolean> testCompile = compileService.compileOnly(compileInput.getUtPackagename(), compileInput.getUtCode());
             String codeOut = codeCompile._1;
             String testOut = testCompile._1;
 
@@ -43,7 +43,7 @@ public class TestUdfController {
                 return new ServiceResponse<>("Code Compilation Failed\n"+codeCompile._1, HttpStatus.BAD_REQUEST);
             }
             if(!testCompile)
-             = compileService.compile(compileTestInput.getCode())
+             = compileService.compileOnly(compileTestInput.getCode())
             CompileTestResponse compileTestResponse = compileTestService.executeTest(compileTestInput);
             if(compileTestResponse.isSuccessful())
             return new ServiceResponse(compileTestResponse, HttpStatus.OK);*/
