@@ -1,7 +1,6 @@
 package com.guavus.raf.runtest;
 
 import com.google.common.collect.ImmutableList;
-import javafx.util.Pair;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.RowFactory;
