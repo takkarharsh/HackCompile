@@ -4,10 +4,7 @@ import com.guavus.raf.compile.model.CompileInput;
 import com.guavus.raf.compile.model.ServiceResponse;
 import com.guavus.raf.compile.utils.Compile;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;
 import java.util.regex.Matcher;
@@ -15,6 +12,7 @@ import java.util.regex.Pattern;
 
 @RestController
 @RequestMapping("/hack")
+@CrossOrigin
 public class CompileController {
 
     @RequestMapping(value = "/dummy", method = RequestMethod.GET)
