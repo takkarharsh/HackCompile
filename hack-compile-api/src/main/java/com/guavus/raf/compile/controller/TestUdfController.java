@@ -48,6 +48,7 @@ public class TestUdfController {
             if(compileTestResponse.isSuccessful())
             return new ServiceResponse(compileTestResponse, HttpStatus.OK);*/
         } catch (Exception e) {
+            e.printStackTrace();
             return new ServiceResponse<CompileTestResponse>(HttpStatus.INTERNAL_SERVER_ERROR, ErrorCodes.EXECUTION_FAILED.getCode(), "Error running test cases : " + e.getCause());
         }
 
