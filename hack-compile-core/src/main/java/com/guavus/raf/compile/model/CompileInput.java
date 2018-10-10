@@ -3,18 +3,18 @@ package com.guavus.raf.compile.model;
 import java.io.Serializable;
 
 public class CompileInput implements Serializable {
-    private String name;
+    private String packagename;
     private String code;
 
     public CompileInput() {
     }
 
-    public String getName() {
-        return name;
+    public String getPackagename() {
+        return packagename;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPackagename(String packagename) {
+        this.packagename = packagename;
     }
 
     public String getCode() {

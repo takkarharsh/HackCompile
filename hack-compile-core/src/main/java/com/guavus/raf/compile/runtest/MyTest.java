@@ -1,4 +1,4 @@
-package com.guavus.raf.runtest;
+package com.guavus.raf.compile.runtest;
 
 import com.google.common.collect.ImmutableList;
 import org.apache.spark.sql.Dataset;
@@ -14,7 +14,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class MyTest extends CustomTest {
+public class MyTest extends UDFComputeTest {
 
 
     /* ==============================================================================================

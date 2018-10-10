@@ -24,12 +24,12 @@ public class CompileController {
     public ServiceResponse<String> compile(@RequestBody CompileInput compileInput) {
         String out = null;
         try {
-            out = Compile.compile(compileInput.getName(), compileInput.getCode());
+            out = Compile.compile(compileInput.getPackagename(), compileInput.getCode());
             System.out.print(out);
             Pattern pattern = Pattern.compile("\\s\\d+.?(error)s*");
             Matcher matcher = pattern.matcher(out);
             if (matcher.find()) {
-                return new ServiceResponse<String>(out, HttpStatus.SERVICE_UNAVAILABLE);
+                return new ServiceResponse<String>(out, HttpStatus.INTERNAL_SERVER_ERROR);
             }
         } catch (Exception e) {
             e.printStackTrace();
