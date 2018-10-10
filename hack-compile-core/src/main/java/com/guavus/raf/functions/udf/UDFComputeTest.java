@@ -9,7 +9,7 @@ public abstract class UDFComputeTest {
     SparkSession sparkSession;
 
     public void initialise(){
-        sparkSession = SparkSession.builder().appName("SwatKats").getOrCreate();
+        sparkSession = SparkSession.builder().master("local").appName("SwatKats").getOrCreate();
     }
 
     abstract public Set<String> testSet();

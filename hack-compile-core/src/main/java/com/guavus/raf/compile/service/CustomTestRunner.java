@@ -21,6 +21,7 @@ import java.util.Set;
 public class CustomTestRunner {
 
     public CompileTestResponse invokeTest(UDFCompute udfCompute, UDFComputeTest testObj) {
+        testObj.initialise();
         Set<String> methodTest = testObj.testSet();
         boolean overallStatus = true;
         List<TestStatus> testStatuses = new ArrayList<>();

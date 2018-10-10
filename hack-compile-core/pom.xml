@@ -42,20 +42,23 @@
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-core_2.11</artifactId>
             <version>${spark.version}</version>
-            <!--<scope>provided</scope> -->
         </dependency>
         <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-sql_2.11</artifactId>
             <version>${spark.version}</version>
-            <!--<scope>provided</scope> -->
         </dependency>
         <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-hive_2.11</artifactId>
             <version>${spark.version}</version>
-            <!--<scope>provided</scope> -->
         </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-catalyst_2.11</artifactId>
+            <version>2.2.1</version>
+        </dependency>
+
         <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-yarn_2.11</artifactId>
@@ -67,21 +70,15 @@
             <artifactId>spark-mllib_2.11</artifactId>
             <version>${spark.version}</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.spark/spark-catalyst -->
         <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-catalyst_2.11</artifactId>
-            <version>2.2.1</version>
+            <version>${spark.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jooq</groupId>
-            <artifactId>joor-java-8</artifactId>
-            <version>0.9.8</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
         <dependency>
