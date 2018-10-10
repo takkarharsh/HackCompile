@@ -22,15 +22,58 @@
     </properties>
     <dependencies>
         <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-mllib_2.11</artifactId>
+            <version>${spark.version}</version>
+            <!--<scope>provided</scope>-->
+            <!--Dropping commons-compiler-->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.codehaus.janino</groupId>
+                    <artifactId>commons-compiler</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.codehaus.janino</groupId>
+            <artifactId>commons-compiler</artifactId>
+            <version>3.0.8</version>
+        </dependency>
+
+
+
+
+
+
+
+
+
+
+        <!-- https://mvnrepository.com/artifact/org.scala-lang/scala-library -->
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>2.11.8</version>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
+            <!--<exclusions>
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-logging</artifactId>
                 </exclusion>
-            </exclusions>
+            </exclusions>-->
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.spark/spark-catalyst -->
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-catalyst_2.11</artifactId>
+            <version>2.2.0</version>
+            <!--<scope>test</scope>-->
+        </dependency>
+
         <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-catalyst_2.11</artifactId>
@@ -39,13 +82,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <exclusions>
+            <!--<exclusions>
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-logging</artifactId>
                 </exclusion>
-            </exclusions>
-            <scope>test</scope>
+            </exclusions>-->
+            <!--<scope>test</scope>-->
         </dependency>
         <dependency>
             <groupId>com.guavus.hack</groupId>
