@@ -21,12 +21,6 @@ public class CompileController {
     @Autowired
     CompileService compileService;
 
-
-    @RequestMapping(value = "/dummy", method = RequestMethod.GET)
-    public String getDummyValue() {
-        return new String("Dummy Response");
-    }
-
     @RequestMapping(value = "/compile", method = RequestMethod.POST)
     public ServiceResponse<String> compile(@RequestBody CompileInput compileInput) {
         Tuple2<String,Boolean> response = null;

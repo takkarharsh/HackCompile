@@ -1,4 +1,4 @@
-package com.guavus.raf.compile.runtest;
+package com.guavus.raf.functions.udf;
 
 import org.apache.spark.sql.SparkSession;
 

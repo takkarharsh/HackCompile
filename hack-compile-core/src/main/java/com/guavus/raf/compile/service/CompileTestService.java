@@ -2,13 +2,11 @@ package com.guavus.raf.compile.service;
 
 import com.guavus.raf.compile.model.CompileInput;
 import com.guavus.raf.compile.model.CompileTestResponse;
-import com.guavus.raf.compile.runtest.UDFComputeTest;
+import com.guavus.raf.functions.udf.UDFComputeTest;
 import com.guavus.raf.functions.udf.UDFCompute;
 import org.joor.Reflect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class CompileTestService {

@@ -2,7 +2,7 @@ package com.guavus.raf.compile.service;
 
 import com.guavus.raf.compile.model.CompileTestResponse;
 import com.guavus.raf.compile.model.TestStatus;
-import com.guavus.raf.compile.runtest.UDFComputeTest;
+import com.guavus.raf.functions.udf.UDFComputeTest;
 import com.guavus.raf.functions.udf.UDFCompute;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.spark.sql.Dataset;
