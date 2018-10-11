@@ -36,8 +36,10 @@ public class Compile {
                 // This works if we have private-access to the interfaces in the class hierarchy
                 if (Reflect.CACHED_LOOKUP_CONSTRUCTOR != null) {
                     ClassLoader cl = lookup.lookupClass().getClassLoader();
+
                     byte[] b = fileManager.o.getBytes();
                     result = Reflect.on(cl).call("defineClass", className, b, 0, b.length).get();
+                    cl.clearAssertionStatus();
                 }
                 return result;
             } catch (Exception e) {
