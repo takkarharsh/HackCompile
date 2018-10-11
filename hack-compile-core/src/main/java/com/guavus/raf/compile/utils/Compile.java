@@ -19,9 +19,9 @@ public class Compile {
     static Class<?> compile(String className, String content) {
         MethodHandles.Lookup lookup = MethodHandles.lookup();
 
-//        try {
-//            return lookup.lookupClass().getClassLoader().loadClass(className);
-//        } catch (ClassNotFoundException ignore) {
+        try {
+            return lookup.lookupClass().getClassLoader().loadClass(className);
+        } catch (ClassNotFoundException ignore) {
             JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
 
             try {
@@ -39,13 +39,12 @@ public class Compile {
 
                     byte[] b = fileManager.o.getBytes();
                     result = Reflect.on(cl).call("defineClass", className, b, 0, b.length).get();
-                    cl.clearAssertionStatus();
                 }
                 return result;
             } catch (Exception e) {
                 throw new ReflectException("Error while compiling " + className, e);
             }
-//        }
+        }
     }
 
     public static Tuple2<String, Boolean> compileOnly(String className, String content) {
